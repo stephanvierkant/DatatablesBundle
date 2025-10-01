@@ -286,7 +286,6 @@ class DatatableQueryBuilder
 
         $query = $qb->getQuery();
         $query->setHydrationMode(Query::HYDRATE_ARRAY)->useQueryCache($this->useQueryCache);
-        \call_user_func_array([$query, 'useResultCache'], $this->useResultCacheArgs);
 
         return $query;
     }
@@ -305,7 +304,6 @@ class DatatableQueryBuilder
 
         $query = $qb->getQuery();
         $query->useQueryCache($this->useCountQueryCache);
-        \call_user_func_array([$query, 'useResultCache'], $this->useCountResultCacheArgs);
 
         return ! $qb->getDQLPart('groupBy')
             ? (int) $query->getSingleScalarResult()
