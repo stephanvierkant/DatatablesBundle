@@ -14,16 +14,16 @@ namespace Sg\DatatablesBundle\DependencyInjection;
 use Sg\DatatablesBundle\Datatable\Column\ColumnInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class SgDatatablesExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container) : void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -40,7 +40,7 @@ class SgDatatablesExtension extends Extension implements PrependExtensionInterfa
     /**
      * {@inheritdoc}
      */
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container) : void
     {
         $container->prependExtensionConfig(
             'framework',
